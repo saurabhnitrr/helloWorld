@@ -3,6 +3,7 @@ using namespace std;
 
 bool isPossibleWord(vector<int> inputFreq, string word)
 {
+    //// if the input does not contain that letter, we don't proceed since the word cant be made.
     for(int i=0;i<word.size();i++)
     {
         if(inputFreq[word[i]-'a'] ==0)
@@ -28,14 +29,16 @@ vector<string> wordDict(vector<string> words, string input)
     }
     for(int i=0;i<words.size();i++)
     {
+        // Check if the word can be made using the letters in the bucket.
         if(isPossibleWord(inputFreq, words[i]))
         {
+            //// If we find a word same as the longest word, add it to the list
             if(words[i].length()==maxLen)
             {
                 res.push_back(words[i]);
                 cout<<maxLen<<" "<<words[i]<<endl;
             }
-            else if(words[i].size()> maxLen)
+            else if(words[i].size()> maxLen) // If we find a longer word, clear the list and add the new word and update the len.
             {
                 
                 res.clear();
